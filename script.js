@@ -43,7 +43,18 @@ window.addEventListener('load', function(){
       this.speedX = speedX;
       this.speedY = speedY;
     }
-    update(){
+    update(items){
+      // collision logic
+
+      items.forEach(item => {
+        if (item.x < this.x + this.width &&
+            item.x + item.width > this.x &&
+            item.y < this.y + this.height &&
+            item.y + item.height > this.y
+        ){console.log('collision')}
+      });
+
+      //player movement
       if(this.game.lastKey == 'PArrowLeft'){
         this.setSpeed(-this.maxSpeed,0)
         this.frameY = 1;
@@ -124,15 +135,16 @@ window.addEventListener('load', function(){
       this.lastKey = undefined;
       this.input = new InputHandler(this);
       this.hero = new Hero(this);
+      // interactables become an array of objects that player can interact with
       this.interactables = [];
-      this.interactables.push(new Bookshelf(this));
+      this.interactables.push(new Bookshelf(this)); // start with just one for now
     
       
     }
     render(context){
       this.interactables.forEach(item => item.draw(context));
       this.hero.draw(context);
-      this.hero.update();
+      this.hero.update(this.interactables);
       // order of drawing dictates the position on screen
 
     }
