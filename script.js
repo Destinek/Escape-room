@@ -30,7 +30,7 @@ window.addEventListener('load', function(){
       this.y = 300;
       this.speedX = 0;
       this.speedY = 0;
-      this.maxSpeed = 2;
+      this.maxSpeed = 5;
       this.gameFrame = 0;
       this.staggerFrame = 10;
       this.image = document.getElementById('hero');
@@ -84,13 +84,13 @@ window.addEventListener('load', function(){
       }
       this.x += this.speedX;
       this.y += this.speedY;
-      //setting horizontal bouandaries
+      //setting horizontal bouandaries on the screen
       if (this.x<0){
         this.x = 0;
       } else if (this.x > this.game.width - this.width){
         this.x =this.game.width - this.width;
       }
-      //setting vertical bouandaries
+      //setting vertical bouandaries on the scree 
       if (this.y <0 + this.game.topMargin){
         this.y = this.game.topMargin;
       } else if (this.y > this.game.height - this.height) {
