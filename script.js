@@ -36,7 +36,7 @@ window.addEventListener('load', function(){
       this.image = document.getElementById('hero');
     }
     draw(context){
-      // context.fillRect(this.x ,this.y , this.width, this.height);
+      context.strokeRect(this.x ,this.y , this.width, this.height);
       context.drawImage(this.image, this.frameX *this.spriteWidth, this.frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
     }
     setSpeed(speedX, speedY){
@@ -100,6 +100,7 @@ window.addEventListener('load', function(){
     }
     draw(context){
       context.drawImage(this.image, this.x, this.y, this.width, this.height);
+      context.strokeRect(this.x ,this.y , this.width, this.height);
     }
   }
 
@@ -123,10 +124,13 @@ window.addEventListener('load', function(){
       this.lastKey = undefined;
       this.input = new InputHandler(this);
       this.hero = new Hero(this);
-      this.book = new Bookshelf(this);
+      this.interactables = [];
+      this.interactables.push(new Bookshelf(this));
+    
+      
     }
     render(context){
-      this.book.draw(context);
+      this.interactables.forEach(item => item.draw(context));
       this.hero.draw(context);
       this.hero.update();
       // order of drawing dictates the position on screen
