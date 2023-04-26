@@ -31,6 +31,8 @@ window.addEventListener('load', function(){
       this.speedX = 0;
       this.speedY = 0;
       this.maxSpeed = 2;
+      this.gameFrame = 0;
+      this.staggerFrame = 8;
       this.image = document.getElementById('hero');
     }
     draw(context){
@@ -45,29 +47,29 @@ window.addEventListener('load', function(){
       if(this.game.lastKey == 'PArrowLeft'){
         this.setSpeed(-this.maxSpeed,0)
         this.frameY = 1;
-      // } else if(this.game.lastKey == 'RArrowLeft'){
-      //   this.setSpeed(0,0)
-      //   this.frameY = 1;
+      } else if(this.game.lastKey == 'RArrowLeft'){
+        this.setSpeed(0,0)
+        this.frameY = 1;
       } else if(this.game.lastKey == 'PArrowRight'){
         this.setSpeed(this.maxSpeed,0)
         this.frameY = 2;
-      // }else if(this.game.lastKey == 'RArrowRight'){
-      //   this.setSpeed(0,0)
-      //   this.frameY = 4;
+      }else if(this.game.lastKey == 'RArrowRight'){
+        this.setSpeed(0,0)
+        this.frameY = 2;
       } else if(this.game.lastKey == 'PArrowUp'){
         this.setSpeed(0, -this.maxSpeed*0.6)
         this.frameY = 3;
-      // }else if(this.game.lastKey == 'RArrowUp'){
-      //   this.setSpeed(0,0)
-      //   this.frameY = 6;
+      }else if(this.game.lastKey == 'RArrowUp'){
+        this.setSpeed(0,0)
+        this.frameY = 3;
       }else if(this.game.lastKey == 'PArrowDown'){
         this.setSpeed(0, this.maxSpeed*0.6)
         this.frameY = 0;
-      // }else if(this.game.lastKey == 'RArrowDown'){
-      //   this.setSpeed(0,0)
-      //   this.frameY = 0;
+      }else if(this.game.lastKey == 'RArrowDown'){
+        this.setSpeed(0,0)
+        this.frameY = 0;
       } else{
-        this.setSpeed(0,0)//Users/destinkouamba/Makers/final-project/public/owlbear.png
+        this.setSpeed(0,0)
       }
       this.x += this.speedX;
       this.y += this.speedY;
@@ -84,11 +86,10 @@ window.addEventListener('load', function(){
         this.y = this.game.height - this.height;
       }
       // sprire animation
-      if (this.frameX< this.maxFrame){
-        this.frameX ++;
-      } else {
-        this.frameX = 0;
-      }
+      if (this.gameFrame %this.staggerFrame == 0){
+        if (this.frameX< this.maxFrame) this.frameX ++;
+        else this.frameX = 0;}
+      this.gameFrame++;
 
     }
   }
