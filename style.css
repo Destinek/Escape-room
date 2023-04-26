@@ -63,6 +63,6 @@ canvas:hover ~ #leaves_right {
   100% {top: 50px;}
 }
 
-#hero {
+#hero, #bookshelf {
   display: none;
 }

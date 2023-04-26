@@ -26,8 +26,8 @@ window.addEventListener('load', function(){
       this.maxFrame = 2; //number of frames per row within sprite sheet
       this.width = this.spriteWidth;
       this.height =  this.spriteHeight;
-      this.x = 200;
-      this.y = 200;
+      this.x = 300;
+      this.y = 300;
       this.speedX = 0;
       this.speedY = 0;
       this.maxSpeed = 2;
@@ -95,21 +95,42 @@ window.addEventListener('load', function(){
   }
 
   class Object {
+    constructor(game){
+      this.game = game
+    }
+    draw(context){
+      context.drawImage(this.image, this.x, this.y, this.width, this.height);
+    }
+  }
 
+  class Bookshelf extends Object{
+    constructor(game){
+      super(game);
+      this.game = game;
+      this.image= document.getElementById('bookshelf')
+      this.imageWidth= this.width = 32 
+      this.imageHeight= this.height = 40
+      this.x=300;
+      this.y=280;
+    }
   }
 
   class Game {
     constructor(width, height ){
       this.width= width;
       this.height=height;
-      this.topMargin = 260;
+      this.topMargin = 280;
       this.lastKey = undefined;
       this.input = new InputHandler(this);
       this.hero = new Hero(this);
+      this.book = new Bookshelf(this);
     }
     render(context){
+      this.book.draw(context);
       this.hero.draw(context);
       this.hero.update();
+      // order of drawing dictates the position on screen
+
     }
   }
 
