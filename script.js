@@ -23,7 +23,7 @@ window.addEventListener('load', function(){
       this.spriteHeight = 32;
       this.frameX = 0;
       this.frameY = 0;
-      this.maxFrame = 3; //number of frames per row within sprite sheet
+      this.maxFrame = 2; //number of frames per row within sprite sheet
       this.width = this.spriteWidth;
       this.height =  this.spriteHeight;
       this.x = 200;
@@ -34,7 +34,7 @@ window.addEventListener('load', function(){
       this.image = document.getElementById('hero');
     }
     draw(context){
-      //context.fillRect(this.x ,this.y , this.width, this.height);
+      // context.fillRect(this.x ,this.y , this.width, this.height);
       context.drawImage(this.image, this.frameX *this.spriteWidth, this.frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
     }
     setSpeed(speedX, speedY){
