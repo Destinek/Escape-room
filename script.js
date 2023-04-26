@@ -32,7 +32,7 @@ window.addEventListener('load', function(){
       this.speedY = 0;
       this.maxSpeed = 2;
       this.gameFrame = 0;
-      this.staggerFrame = 8;
+      this.staggerFrame = 10;
       this.image = document.getElementById('hero');
     }
     draw(context){
