@@ -34,6 +34,7 @@ window.addEventListener('load', function(){
       this.gameFrame = 0;
       this.staggerFrame = 10;
       this.image = document.getElementById('hero');
+      this.isMoving = false;
     }
     draw(context){
       // context.strokeRect(this.x ,this.y , this.width, this.height);
@@ -45,7 +46,6 @@ window.addEventListener('load', function(){
     }
     update(items){
       // collision logic
-
       items.forEach(item => {
         if (item.x < this.x + this.width &&
             item.x + item.width > this.x &&
@@ -58,30 +58,44 @@ window.addEventListener('load', function(){
       if(this.game.lastKey == 'PArrowLeft'){
         this.setSpeed(-this.maxSpeed,0)
         this.frameY = 1;
+        this.isMoving = true;
       } else if(this.game.lastKey == 'RArrowLeft'){
         this.setSpeed(0,0)
         this.frameY = 1;
+        this.isMoving = false;
       } else if(this.game.lastKey == 'PArrowRight'){
         this.setSpeed(this.maxSpeed,0)
         this.frameY = 2;
+        this.isMoving = true;
       }else if(this.game.lastKey == 'RArrowRight'){
         this.setSpeed(0,0)
         this.frameY = 2;
+        this.isMoving = false;
       } else if(this.game.lastKey == 'PArrowUp'){
         this.setSpeed(0, -this.maxSpeed*0.6)
         this.frameY = 3;
+        this.isMoving = true;
       }else if(this.game.lastKey == 'RArrowUp'){
         this.setSpeed(0,0)
         this.frameY = 3;
+        this.isMoving = false;
       }else if(this.game.lastKey == 'PArrowDown'){
         this.setSpeed(0, this.maxSpeed*0.6)
         this.frameY = 0;
+        this.isMoving = true;
       }else if(this.game.lastKey == 'RArrowDown'){
         this.setSpeed(0,0)
         this.frameY = 0;
+        this.isMoving = false;
       } else{
         this.setSpeed(0,0)
+        this.isMoving = false;
       }
+
+      if(!this.isMoving) {
+        this.frameX = 1;
+      }
+      
       this.x += this.speedX;
       this.y += this.speedY;
       //setting horizontal bouandaries on the screen
@@ -96,12 +110,14 @@ window.addEventListener('load', function(){
       } else if (this.y > this.game.height - this.height) {
         this.y = this.game.height - this.height;
       }
-      // sprire animation
-      if (this.gameFrame %this.staggerFrame == 0){
-        if (this.frameX< this.maxFrame) this.frameX ++;
-        else this.frameX = 0;}
-      this.gameFrame++;
-
+      // sprite animation
+      if (this.gameFrame % this.staggerFrame == 0){
+        this.gameFrame++;
+      }
+      if (this.isMoving) {
+        if (this.frameX < this.maxFrame) this.frameX++;
+        else this.frameX = 0;
+      }
     }
   }
 
