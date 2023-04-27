@@ -98,16 +98,16 @@ window.addEventListener('load', function(){
       this.y += this.speedY;
 
       //setting horizontal bouandaries on the screen
-      if (this.x<0){
-        this.x = 0;
-      } else if (this.x > this.game.width - this.width){
-        this.x =this.game.width - this.width;
+      if (this.x<45){
+        this.x = 45;
+      } else if (this.x > this.game.rightMargin - this.width){
+        this.x =this.game.rightMargin - this.width;
       }
       //setting vertical bouandaries on the scree 
       if (this.y <0 + this.game.topMargin){
         this.y = this.game.topMargin;
-      } else if (this.y > this.game.height - this.height) {
-        this.y = this.game.height - this.height;
+      } else if (this.y > this.game.bottomMargin - this.height) {
+        this.y = this.game.bottomMargin - this.height;
       }
       // sprite animation
       if (this.isMoving) {
@@ -144,6 +144,8 @@ window.addEventListener('load', function(){
       this.width= width;
       this.height=height;
       this.topMargin = 280;
+      this.bottomMargin = 860;
+      this.rightMargin = 1045
       this.lastKey = undefined;
       this.input = new InputHandler(this);
       this.hero = new Hero(this);
