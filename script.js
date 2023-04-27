@@ -31,8 +31,6 @@ window.addEventListener('load', function(){
       this.speedX = 0;
       this.speedY = 0;
       this.maxSpeed = 4;
-      this.gameFrame = 0;
-      this.staggerFrame = 10;
       this.image = document.getElementById('hero');
       this.isMoving = false;
     }
@@ -98,6 +96,7 @@ window.addEventListener('load', function(){
       
       this.x += this.speedX;
       this.y += this.speedY;
+
       //setting horizontal bouandaries on the screen
       if (this.x<0){
         this.x = 0;
@@ -111,9 +110,6 @@ window.addEventListener('load', function(){
         this.y = this.game.height - this.height;
       }
       // sprite animation
-      if (this.gameFrame % this.staggerFrame == 0){
-        this.gameFrame++;
-      }
       if (this.isMoving) {
         if (this.frameX < this.maxFrame) this.frameX++;
         else this.frameX = 0;
