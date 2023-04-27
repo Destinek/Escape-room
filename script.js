@@ -30,13 +30,13 @@ window.addEventListener('load', function(){
       this.y = 300;
       this.speedX = 0;
       this.speedY = 0;
-      this.maxSpeed = 5;
+      this.maxSpeed = 4;
       this.gameFrame = 0;
       this.staggerFrame = 10;
       this.image = document.getElementById('hero');
     }
     draw(context){
-      context.strokeRect(this.x ,this.y , this.width, this.height);
+      // context.strokeRect(this.x ,this.y , this.width, this.height);
       context.drawImage(this.image, this.frameX *this.spriteWidth, this.frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
     }
     setSpeed(speedX, speedY){
